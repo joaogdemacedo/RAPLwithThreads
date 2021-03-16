@@ -27,7 +27,8 @@ We will need two terminals to run *raplServer* alonsige *raplClient*.
 	```sudo ../raplServer```
 
 5. In the second terminal, we will run the *raplClient* following this command template:
-```sudo ../raplClient timeinterval result program ```
+
+    ```sudo ../raplClient timeinterval result program ```
 			
 	a) **timeinterval** - Interval of microseconds that RAPL will be reading and writting values to the results file;
 	b) **result** - File created with name *result.rapl* containing the reading values of RAPL.
