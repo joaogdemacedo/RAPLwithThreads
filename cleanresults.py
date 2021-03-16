@@ -110,14 +110,14 @@ def printSoma(energySpent,text,urlrapl):
     txt = "" 
     print("Somas de ",urlrapl," :")
     for i in energySpent.keys():
-        if(i == "Disco"):
-            print("Energy Spent on Disk:",energySpent[i],"J")
+        if(i == "DRAM"):
+            print("Energy Spent on Rapl -",i,":",energySpent[i],"J")
             txt = txt + str(energySpent[i]) +"\n"
 
         elif(i == "GPU"):
             txt = txt + "0" + ";"
         else:
-            print("Energy Spent on Rapl(",i,"):",energySpent[i],"J")            
+            print("Energy Spent on Rapl -",i,":",energySpent[i],"J")            
             txt = txt + str(energySpent[i]) + ";"
     finalfile = open(text+".sum", "a+") 
     finalfile.write(txt)
@@ -128,24 +128,24 @@ def printSoma(energySpent,text,urlrapl):
 ##tratar dos resultados
 text = sys.argv[1]
 finalfile = open(text+".sum", "w") 
-finalfile.write("Package;CPU;GPU;DRAM;Disco\n")
+finalfile.write("Package;CPU;GPU;DRAM\n")
 finalfile.close()     
-urlard= text+".ard"
-urlrapl= text+".rapl"
-if(path.exists(urlard)):
-    ardclean(urlard)
-if(path.exists(urlrapl)):
-    raplclean(urlrapl)
-    crp(urlard,urlrapl,text)
-else:
-    print("ficheiro nao existe")
-#sequiseres varios ficheiros
-#for i in range(1,11):
-#        urlard= str(i)+text+".ard"
-#        urlrapl= str(i)+text+".rapl"
-#        if(path.exists(urlard)):
-#            ardclean(urlard)   
-#        if(path.exists(urlrapl)):
-#            raplclean(urlrapl)
-#            crp(urlard,urlrapl,text)
+#urlard= text+".ard"
+#urlrapl= text+".rapl"
+#if(path.exists(urlard)):
+#    ardclean(urlard)
+#if(path.exists(urlrapl)):
+#    raplclean(urlrapl)
+#    crp(urlard,urlrapl,text)
+#else:
+#    print("ficheiro nao existe")
+#se quiseres varios ficheiros
+for i in range(1,11):
+        urlard= str(i)+text+".ard"
+        urlrapl= text+str(i)+".rapl"
+        #if(path.exists(urlard)):
+        #    ardclean(urlard)   
+        if(path.exists(urlrapl)):
+            raplclean(urlrapl)
+            crp(urlard,urlrapl,text)
  
